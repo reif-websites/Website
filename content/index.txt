@@ -1,0 +1,2 @@
+<h1>Front page</h1>
+Reif is still in development, don't expect too much.

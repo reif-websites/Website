@@ -1,0 +1,11 @@
+cache
+content/*
+!content/index.php
+!content/index.txt
+!content/index.json
+!content/test.php
+!content/test.txt
+!content/test.json
+users/*
+!.gitkeep
+REIF_LOGIN_CODE

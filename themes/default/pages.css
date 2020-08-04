@@ -1,0 +1,53 @@
+body {
+    text-align: center;
+    background: #b4ffb4;
+    margin: 0;
+}
+
+nav {
+    background: #27b100;
+    height: 3rem;
+    text-align: left;
+}
+
+nav a, nav div {
+    display:inline-block;
+}
+
+nav button {
+    border: none;
+    height: 3rem;
+    background: #1dbf45;
+    color: white;
+}
+
+nav button:hover {
+    background: #04a02a;
+}
+
+nav a.start button {
+    background: #00600f;
+    color: white;
+}
+
+nav .group .list {
+    position: absolute;
+    display: none;
+    min-width: 12rem;
+    background: #64ff7c75;
+    text-align: left;
+}
+
+nav .group .list a, nav .group .list button {
+	width: 100%;
+	text-align: left;
+}
+
+nav .group:hover .list {
+    display: block;
+}
+
+header img {
+    padding-top: 1rem;
+    height: 8rem;
+}
