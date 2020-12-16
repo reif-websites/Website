@@ -21,16 +21,23 @@ along with Reif.  If not, see <https://www.gnu.org/licenses/>.
 
 include(__DIR__ . '/../../../../sys/main.php');
 
-create_user($_POST["username"], $_POST["password"], 3);
-
 global $REIF;
-$userfile = $REIF["root"] . "/users/" . hash("sha3-512", hash("sha3-512", $_POST["username"])) . ".json";
-$userinfo = json_decode(file_get_contents($userfile), true);
+$postData = json_decode(file_get_contents('php://input'), true);
 
-$userinfo["disabled"] = true;
+$userfile = $REIF["root"] . "/users/" . hash("sha3-512", hash("sha3-512", $postData["username"])) . ".json";
 
-file_put_contents($userfile, json_encode($userinfo, true));
-
-$code = hash("sha3-512",hash("sha3-512", $_POST["username"]));
-
-echo "{\"code\": \"$code\"}";
+if(!file_exists($userfile)) {
+    create_user($postData["username"], $postData["password"], 3);
+    $userinfo = json_decode(file_get_contents($userfile), true);
+    
+    $userinfo["disabled"] = true;
+    
+    file_put_contents($userfile, json_encode($userinfo, true));
+    
+    $code = hash("sha3-512",hash("sha3-512", $postData["username"]));
+    
+    echo "{\"code\": \"$code\"}";
+} else {
+    http_response_code(401);
+    echo "{\"valid\": \"false\"}";
+}

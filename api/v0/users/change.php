@@ -21,17 +21,19 @@ along with Reif.  If not, see <https://www.gnu.org/licenses/>.
 
 include(__DIR__ . '/../../../sys/main.php');
 
-if(check_user($_POST["username"], $_POST["password"])) {
-    if(get_user_type($_POST["username"]) == 2 || $_POST["username"] == $_POST["changing"]) {
+$postData = json_decode(file_get_contents('php://input'), true);
+
+if(check_user($postData["username"], $postData["password"])) {
+    if(get_user_type($postData["username"]) == 2 || $postData["username"] == $postData["changing"]) {
         echo "{\"valid\": true}";
-        if(defined($_POST["new_name"])) {
-            modify_user_name($_POST["changing"], $_POST["new_name"]);
+        if(defined($postData["new_name"])) {
+            modify_user_name($postData["changing"], $postData["new_name"]);
         }
-        if(defined($_POST["new_pw"])) {
-            modify_user_password($_POST["changing"], $_POST["new_pw"]);
+        if(defined($postData["new_pw"])) {
+            modify_user_password($postData["changing"], $postData["new_pw"]);
         }
-        if(defined($_POST["new_type"]) && get_user_type($_POST["username"]) == 2) {
-            modify_user_type($_POST["changing"], $_POST["new_type"]);
+        if(defined($postData["new_type"]) && get_user_type($postData["username"]) == 2) {
+            modify_user_type($postData["changing"], $postData["new_type"]);
         }
     } else {
         http_response_code(401);

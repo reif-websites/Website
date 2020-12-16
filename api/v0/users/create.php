@@ -20,23 +20,24 @@ along with Reif.  If not, see <https://www.gnu.org/licenses/>.
 */
 
 include(__DIR__ . '/../../../sys/main.php');
+$postData = json_decode(file_get_contents('php://input'), true);
 
-if(check_user($_POST["username"], $_POST["password"])) {
-    if(get_user_type($_POST["username"]) > 1) {
-        if($_POST["new_type"] == 0) {
-            if(create_user($_POST["new_username"], $_POST["new_password"], $_POST["new_type"], $_POST["new_page"], $_POST["new_page_group"])) {
+if(check_user($postData["username"], $postData["password"])) {
+    if(get_user_type($postData["username"]) > 1) {
+        if($postData["new_type"] == 0) {
+            if(create_user($postData["new_username"], $postData["new_password"], $postData["new_type"], $postData["new_page"], $postData["new_page_group"])) {
                 echo "{\"valid\": true, \"existing\": false}";
             } else {
                 echo "{\"valid\": true, \"existing\": true}";
             }
-        } elseif ($_POST["new_type"] == 1) {
-            if(create_user($_POST["new_username"], $_POST["new_password"], $_POST["new_type"], $_POST["new_group"])) {
+        } elseif ($postData["new_type"] == 1) {
+            if(create_user($postData["new_username"], $postData["new_password"], $postData["new_type"], $postData["new_group"])) {
                 echo "{\"valid\": true, \"existing\": false}";
             } else {
                 echo "{\"valid\": true, \"existing\": true}";
             }
         } else {
-            if(create_user($_POST["new_username"], $_POST["new_password"], $_POST["new_type"])) {
+            if(create_user($postData["new_username"], $postData["new_password"], $postData["new_type"])) {
                 echo "{\"valid\": true, \"existing\": false}";
             } else {
                 echo "{\"valid\": true, \"existing\": true}";

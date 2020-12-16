@@ -20,12 +20,13 @@ along with Reif.  If not, see <https://www.gnu.org/licenses/>.
 */
 
 include(__DIR__ . '/../../../sys/main.php');
+$postData = json_decode(file_get_contents('php://input'), true);
 
 global $REIF;
-if(file_exists($REIF["root"] . "/users/" . hash("sha3-512", hash("sha3-512", $_POST["username"])) . ".json")) {
-    $type = get_user_type($_POST["username"]);
+if(file_exists($REIF["root"] . "/users/" . hash("sha3-512", hash("sha3-512", $postData["username"])) . ".json")) {
+    $type = get_user_type($postData["username"]);
     echo "{\"type\": $type}";
 } else {
-    http_response_code(404); // not the perfect statuscode, but I don't know a better one.
+    http_response_code(404); // probably not the perfect statuscode for user not found, but I don't know a better one.
     echo "{\"valid\": false}";
 }

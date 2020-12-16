@@ -21,7 +21,9 @@ along with Reif.  If not, see <https://www.gnu.org/licenses/>.
 
 include(__DIR__ . '/../../../sys/main.php');
 
-if(check_user($_POST["username"], $_POST["password"])) {
+$postData = json_decode(file_get_contents('php://input'), true);
+
+if(check_user($postData["username"], $postData["password"])) {
     echo "{\"valid\": true}";
 } else {
     http_response_code(403);

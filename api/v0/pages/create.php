@@ -22,22 +22,25 @@ along with Reif.  If not, see <https://www.gnu.org/licenses/>.
 include(__DIR__ . '/../../../sys/main.php');
 
 global $REIF;
-if(defined($_POST["displayName"])) {
-    $displayName = $_POST["displayName"];
+
+$postData = json_decode(file_get_contents('php://input'), true);
+
+if(defined($postData["displayName"])) {
+    $displayName = $postData["displayName"];
 } else {
-    $displayName = $_POST["name"];
+    $displayName = $postData["name"];
 }
 
-if(check_user($_POST["username"], $_POST["password"])) {
-    if(get_user_type($_POST["username"]) == 0) {
+if(check_user($postData["username"], $postData["password"])) {
+    if(get_user_type($postData["username"]) == 0) {
         // This type only has one page, creation is disabled
         return false;
     }
-    if(get_user_type($_POST["username"]) == 1) {
-        $userinfo = json_decode(file_get_contents($REIF["root"] . "/users/" . hash("sha3-512", hash("sha3-512", $_POST["username"])) . ".json"), true);
-        create_page($_POST["name"], $displayName, $userinfo["navGroup"], $_POST["content"], hash("sha3-512", hash("sha3-512", $_POST["username"])));
+    if(get_user_type($postData["username"]) == 1) {
+        $userinfo = json_decode(file_get_contents($REIF["root"] . "/users/" . hash("sha3-512", hash("sha3-512", $postData["username"])) . ".json"), true);
+        create_page($postData["name"], $displayName, $userinfo["navGroup"], $postData["content"], hash("sha3-512", hash("sha3-512", $postData["username"])));
     } else {
-        create_page($_POST["name"], $displayName, $_POST["navGroup"], $_POST["content"], hash("sha3-512", hash("sha3-512", $_POST["username"])));
+        create_page($postData["name"], $displayName, $postData["navGroup"], $postData["content"], hash("sha3-512", hash("sha3-512", $postData["username"])));
     }
 } else {
     http_response_code(401);

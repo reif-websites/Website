@@ -22,8 +22,10 @@ along with Reif.  If not, see <https://www.gnu.org/licenses/>.
 include(__DIR__ . '/../../../../sys/main.php');
 
 global $REIF;
+
 if(file_exists($REIF["root"] . "/REIF_LOGIN_CODE")) {
     $username = file_get_contents($REIF["root"] . "/REIF_LOGIN_CODE");
+    $username = str_replace("\n", "", $username);
     $userfile = $REIF["root"] . "/users/$username.json";
     if(file_exists($userfile) && $username != "") {
         $userinfo = json_decode(file_get_contents($userfile), true);
