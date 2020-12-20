@@ -1,5 +1,7 @@
 # Website
 
+<img src="./screenshots/setup.png" width="102">
+
 This repo will contain the source code of Reif itself, the website managment system of Reifenberg. It can be used by anyone, feature requests are also accepted, but feature requests by Reifenberg will be done before others. Please do not create PRs/issues until v0.0.1 is released.
 ## Versions
 
