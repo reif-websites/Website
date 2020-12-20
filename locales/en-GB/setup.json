@@ -1,0 +1,16 @@
+{
+    "heading1": "Welcome to Reif!",
+    "heading2": "Verification",
+    "heading3": "Setup finished",
+    "getStarted": "Please choose an username and a password below.",
+    "username": "Username",
+    "password": "Password",
+    "submit": "Create account",
+    "verifyExplanation": "To verify that you are the owner of this website, please paste the following code into the file \"REIF_LOGIN_CODE\" in the directory with the Reif files on your server.",
+    "copiedText": "Copied!",
+    "continue": "Continue",
+    "errorNotVerified": "We couldn't find the file or the content is not valid. Are you sure you are using the correct filename and copied the code correctly?",
+    "finalText": "The setup is now finished! Thank you for using Reif.",
+    "yourWebsiteIsThere": "You can now access your website",
+    "siteLink": "there."
+}

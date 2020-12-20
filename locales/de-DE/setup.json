@@ -1,0 +1,17 @@
+{
+    "heading1": "Willkommen bei Reif!",
+    "heading2": "Verifizierung",
+    "heading3": "Einrichtung abgeschlossen.",
+    "getStarted": "Bitte wählen Sie unten einen Benutzernamen und ein Passwort.",
+    "username": "Benutzername",
+    "password": "Passwort",
+    "submit": "Account erstellen",
+    "verifyExplanation": "Um zu verifizieren, dass Sie der Eigentümer dieser Webseite sind, kopieren Sie bitte den folgenden Code in die Datei \"REIF_LOGIN_CODE\" im Ordner mit den Reif-Daten auf ihrem Server:",
+    "copiedText": "Kopiert!",
+    "continue": "Weiter",
+    "errorNotVerified": "Wir konnten die Datei nicht finden oder ihr Inhalt ist ungültig. Sind Sie sicher, dass Sie den korrekten Dateinamen verwendet haben und den Code korrekt eingefügt haben?",
+    "finalText": "Die Einrichtung ist nun abgeschlossen! Vielen Dank dafür, dass Sie Reif verwenden.",
+    "yourWebsiteIsThere": "Sie können ihre Webseite nun ",
+    "siteLink": "hier",
+    "yourWebsiteIsThere2": " erreichen."
+}
