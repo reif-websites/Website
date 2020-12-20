@@ -1,0 +1,63 @@
+html.login {
+    background: url("background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+}
+
+.login .container {
+    background: #00000040;
+    border-radius: 2rem;
+    padding: 1rem;
+    width: 18rem;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    color: white;
+    text-align: center;
+    box-shadow: black 0px 0px 12px 3px;
+}
+
+.login input {
+    border: none;
+    padding: 0.7rem 1rem;
+    border-radius: 0.4rem;
+    margin: 0.5rem;
+    outline: none;
+    background: hsla(0, 0%, 0%, 0.231);
+    color: white;
+}
+
+.login button {
+    border: none;
+    padding: 0.7rem 1rem;
+    border-radius: 0.4rem;
+    margin: 0.5rem;
+    color: white;
+    outline: none;
+    background: #0000003b;
+}
+
+button.copy {
+    display: inline;
+    margin-left: -0.8rem;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    height: 2.5rem;
+}
+
+input.copy {
+    display: inline;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    height: 2.5rem;
+}
+
+#errorNotVerified {
+    background: red;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin: 0.7rem;
+    display: none;
+}

@@ -9,3 +9,4 @@ content/*
 users/*
 !.gitkeep
 REIF_LOGIN_CODE
+SETUP_FINISHED

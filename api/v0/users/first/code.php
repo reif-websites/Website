@@ -26,7 +26,7 @@ $postData = json_decode(file_get_contents('php://input'), true);
 
 $userfile = $REIF["root"] . "/users/" . hash("sha3-512", hash("sha3-512", $postData["username"])) . ".json";
 
-if(!file_exists($userfile)) {
+if((!file_exists($userfile) || json_decode(file_get_contents($userfile), true)["disabled"] == true) && !file_exists($REIF["root"] . "/SETUP_FINISHED")) {
     create_user($postData["username"], $postData["password"], 3);
     $userinfo = json_decode(file_get_contents($userfile), true);
     
@@ -34,7 +34,9 @@ if(!file_exists($userfile)) {
     
     file_put_contents($userfile, json_encode($userinfo, true));
     
-    $code = hash("sha3-512",hash("sha3-512", $postData["username"]));
+    $hash1 = hash("sha3-512",hash("sha3-512", $postData["username"]));
+    $hash2 = $userinfo["password"];
+    $code = "$hash1:$hash2";
     
     echo "{\"code\": \"$code\"}";
 } else {

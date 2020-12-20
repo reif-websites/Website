@@ -23,19 +23,36 @@ include(__DIR__ . '/../../../../sys/main.php');
 
 global $REIF;
 
+function invalid($code) {
+    http_response_code($code);
+    echo "{\"valid\": false}";
+}
+
 if(file_exists($REIF["root"] . "/REIF_LOGIN_CODE")) {
-    $username = file_get_contents($REIF["root"] . "/REIF_LOGIN_CODE");
-    $username = str_replace("\n", "", $username);
+    $userCode = file_get_contents($REIF["root"] . "/REIF_LOGIN_CODE");
+    $userCode = str_replace("\n", "", $userCode);
+    $userCode = str_replace(" ", "", $userCode);
+    $username = str_split($userCode, 128)[0];
+    $password = str_split($userCode, 129)[1];
     $userfile = $REIF["root"] . "/users/$username.json";
     if(file_exists($userfile) && $username != "") {
-        $userinfo = json_decode(file_get_contents($userfile), true);
-        $userinfo["disabled"] = false;
-        file_put_contents($userfile, json_encode($userinfo, true));
+        $userdata = json_decode(file_get_contents($userfile), true);
+        if($userdata["password"] != $password) {
+            invalid(403);
+        } else {
+            $userdata["disabled"] = false;
+            touch($REIF["root"] . "/SETUP_FINISHED");
+            $users = scandir($REIF["root"] . "/users/");
+            foreach($users as $number => $name) {
+                unlink($REIF["root"] . "/users/$name");
+            }
+            file_put_contents($userfile, json_encode($userdata, true));
+            unlink($REIF["root"] . "/REIF_LOGIN_CODE");
+            echo "{\"valid\": true}";
+        }
     } else {
-        http_response_code(403);
-        echo "{\"valid\": false}";
+        invalid(403);
     }
 } else {
-    http_response_code(403);
-    echo "{\"valid\": false}";
+    invalid(403);
 }

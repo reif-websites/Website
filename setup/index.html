@@ -1,0 +1,24 @@
+<html class="login">
+    <head>
+        <title>Reif setup</title>
+        <script src="index.js"></script>
+        <link rel="stylesheet" href="index.css" type="text/css">
+        <link href="../third_party/fontawesome/css/all.min.css" rel="stylesheet">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container" id="container">
+                <h2 id="heading1">Welcome to Reif!</h2>
+                <div id="getStarted">Please choose an username and a password below.</div><br>
+                <form onsubmit="createUser();return false;">
+                    <input type="text" id="username" autocomplete="username" placeholder="Username">
+                    <input type="password" id="password" autocomplete="new-password" placeholder="Password">
+                    <input type="submit" id="submit" value="Create account">
+                </form>
+        </div>
+        <script>
+            preparePage();
+        </script>
+    </body>
+</html>
